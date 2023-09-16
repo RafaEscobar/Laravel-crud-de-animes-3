@@ -46,10 +46,6 @@
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 Perfil de usuario
                             </x-dropdown-link>
-                            
-                            <x-dropdown-link href="{{ route('user.index') }}">
-                                Panel administrativo
-                            </x-dropdown-link>
 
                             <div class="border-t border-gray-200"></div>
 

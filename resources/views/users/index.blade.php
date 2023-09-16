@@ -22,4 +22,8 @@
             </table>
         </div>
     </div>
+    <!-- component -->
+
+
+
 </x-app-layout>
