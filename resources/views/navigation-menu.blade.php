@@ -47,7 +47,7 @@
                                 Perfil de usuario
                             </x-dropdown-link>
                             
-                            <x-dropdown-link href="{{ route('profile.show') }}">
+                            <x-dropdown-link href="{{ route('user.index') }}">
                                 Panel administrativo
                             </x-dropdown-link>
 
@@ -107,7 +107,7 @@
                     Perfil de usuario
                 </x-responsive-nav-link>
                 
-                <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                <x-responsive-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('profile.show')">
                     Panel administrativo
                 </x-responsive-nav-link>
 
