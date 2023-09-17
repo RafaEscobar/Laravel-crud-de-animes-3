@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::resource('user', UserController::class);
+    Route::resource('anime', AnimesController::class);
 });
