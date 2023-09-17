@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('public/portadas');
         Storage::makeDirectory('public/portadas');
 
+        Storage::deleteDirectory('public/profilePhoto');
+        Storage::makeDirectory('public/profilePhoto');
+
         Anime::factory(12)->create();
+        $this->call(UserSeeder::class);
     }
 }

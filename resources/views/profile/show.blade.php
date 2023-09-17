@@ -1,45 +1,23 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
+            Perfil de usuario
         </h2>
     </x-slot>
-
-    <div>
-        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                @livewire('profile.update-profile-information-form')
-
-                <x-section-border />
-            @endif
-
-            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.update-password-form')
+    <div class="flex">
+        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 w-4/12 ">
+            <div class="mt-2 flex flex-col justify-center items-center bg-white p-4 rounded-xl">
+                <div>
+                    <img src="{{ Auth()->user()->profile_photo_url }}" alt="{{ Auth()->user()->name }}" class="rounded-full h-48 w-48 object-cover">
+                </div>  
+                <div class="">
+                    <p class="my-4 text-xl">Nombre de usuario: {{Auth()->user()->name}}</p>
+                    <p class="my-4 text-xl">Correo electronico: {{Auth()->user()->email}}</p>
                 </div>
-
-                <x-section-border />
-            @endif
-
-            @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.two-factor-authentication-form')
-                </div>
-
-                <x-section-border />
-            @endif
-
-            <div class="mt-10 sm:mt-0">
-                @livewire('profile.logout-other-browser-sessions-form')
             </div>
-
-            @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
-                <x-section-border />
-
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.delete-user-form')
-                </div>
-            @endif
+        </div>
+        <div class="w-8/12 p-8">
+            <x-card-anime-list title="Full Metal Alchemist Brotherhood" anime_portada_path="https://upload.wikimedia.org/wikipedia/fr/1/11/Fullmetal_Alchemist_logo.png" />
         </div>
     </div>
 </x-app-layout>
