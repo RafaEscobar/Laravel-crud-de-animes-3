@@ -20,7 +20,7 @@
                     <div class="group inline-block">
                         <div class="mr-28">
                             <button class="flex items-center  outline-none focus:outline-none">
-                                <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                <img class="h-10 w-10 rounded-full object-cover" src="{{Storage::url(Auth::user()->profile_photo_path)}}" alt="{{ Auth::user()->name }}" />
                             </button>
                         </div>
                         <ul class="w-full absolute origin-top scale-0 transform rounded-sm border bg-white transition duration-150 ease-in-out group-hover:scale-100">
