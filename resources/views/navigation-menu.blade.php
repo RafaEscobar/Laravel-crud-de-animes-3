@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex justify-center items-center ">
-                    <img src="{{ asset('storage/assets/logo.png') }}" alt="Sin imagen" width="60">
+                    <img src="{{ asset('storage/assets/logo.jpg') }}" alt="Sin imagen" width="60">
                 </div>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
