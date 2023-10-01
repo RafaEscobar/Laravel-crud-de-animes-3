@@ -8,7 +8,7 @@
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 w-4/12 ">
             <div class="mt-2 flex flex-col justify-center items-center bg-white p-4 rounded-xl">
                 <div>
-                    <img src="{{ Auth()->user()->profile_photo_url }}" alt="{{ Auth()->user()->name }}" class="rounded-full h-48 w-48 object-cover">
+                    <img src="{{ Storage::url(Auth::user()->profile_photo_path) }}" alt="{{ Auth()->user()->name }}" class="rounded-full h-48 w-48 object-cover">
                 </div>  
                 <div class="">
                     <p class="my-4 text-xl">Nombre de usuario: {{Auth()->user()->name}}</p>
