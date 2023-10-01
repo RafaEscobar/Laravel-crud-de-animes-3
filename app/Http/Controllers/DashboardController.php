@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index(Request $request) 
     {
-        $count = $request->input('count') ?? 20;
+        $count = $request->input('count') ?? 10;
         $quantity =  [
             "10" => 10,
             "15" => 15,
