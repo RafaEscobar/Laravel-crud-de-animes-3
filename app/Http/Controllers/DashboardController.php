@@ -16,7 +16,9 @@ class DashboardController extends Controller
             "20" => 20,
             "30" => 30
         ];
+
         $animes = Anime::paginate($count);
+        
         return view('dashboard', compact('animes', 'quantity', 'count'));
     }
 }
