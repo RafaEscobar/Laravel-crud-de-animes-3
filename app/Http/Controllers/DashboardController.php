@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index() 
+    public function index(Request $request) 
     {
-        $count = 10;
+        $count = $request->input('count') ?? 20;
         $quantity =  [
-            "ten" => 10,
-            "fifteen" => 15,
-            "twenty" => 20,
-            "thirty" => 30
+            "10" => 10,
+            "15" => 15,
+            "20" => 20,
+            "30" => 30
         ];
         $animes = Anime::paginate($count);
-        return view('dashboard', compact('animes', 'quantity'));
+        return view('dashboard', compact('animes', 'quantity', 'count'));
     }
 }
