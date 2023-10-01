@@ -9,7 +9,8 @@ class DashboardController extends Controller
 {
     public function index() 
     {
-        $animes = Anime::all();
+        $count = 10;
+        $animes = Anime::paginate($count);
         return view('dashboard', compact('animes'));
     }
 }

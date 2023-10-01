@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="bg-gray-200 bg-opacity-25 p-6 lg:p-8 grid grid-cols-3 gap-4">
+                <div class="bg-white bg-opacity-25 p-6 lg:p-8 grid grid-cols-3 gap-4">
                     @foreach ($animes as $anime)    
                       <x-card-anime>
                         <x-slot:image>
@@ -20,7 +20,10 @@
                         </x-slot>
                       </x-card>
                     @endforeach
-                  </div>                  
+                </div>             
+                <div class="bg-white mx-8 my-4">
+                    {{ $animes->links() }}
+                </div>
             </div>
         </div>
     </div>
