@@ -1,11 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            ¡¡Catalogo de animes!!
         </h2>
     </x-slot>
-
     <div class="py-12" x-data="{sendCount: () => { document.querySelector('#selectForm').submit(); }, count: {{$count}} }">
+        @if (session('response'))
+            <x-toast show="true" color="blue">{{session('response')}}</x-toast> 
+        @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="w-2/12 flex items-center mt-4 ml-4">
@@ -18,7 +20,7 @@
                 </div>
                 <div class="bg-white bg-opacity-25 p-6 lg:p-8 grid grid-cols-3 gap-4">
                     @foreach ($animes as $anime)    
-                      <x-card-anime>
+                      <x-card-anime :animeId="$anime->id">
                         <x-slot:image>
                             {{$anime->anime_portada_path}}
                         </x-slot>
