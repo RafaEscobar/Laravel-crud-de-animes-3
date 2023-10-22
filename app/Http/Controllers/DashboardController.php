@@ -30,7 +30,7 @@ class DashboardController extends Controller
             'anime_id' => $animeId,
         ]); 
         $response = "Anime agregado a tu lista de pendientes!!";
-
-        return redirect()->back()->with('response', $response);
+        
+        return redirect()->back()->with('response', $response)->with('color', 'orange');
     }
 }

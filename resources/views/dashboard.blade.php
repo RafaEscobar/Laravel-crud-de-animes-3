@@ -6,7 +6,7 @@
     </x-slot>
     <div class="py-12" x-data="{sendCount: () => { document.querySelector('#selectForm').submit(); }, count: {{$count}} }">
         @if (session('response'))
-            <x-toast show="true" color="blue">{{session('response')}}</x-toast> 
+            <x-toast show="true" :color="session('color')"  >{{session('response')}}</x-toast> 
         @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
