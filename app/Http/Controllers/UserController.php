@@ -37,7 +37,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $pendingAnimes = AnimePendingUser::where('user_id', $user->id)->get();
+        $pendingAnimes = AnimePendingUser::where('user_id', $user->id)->first();
+        dd($pendingAnimes->animes);
+        foreach ($pendingAnimes as $key ) {
+            dd($key->animes);
+        }
         
         return view('profile.show', compact('pendingAnimes'));
     }

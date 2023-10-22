@@ -14,13 +14,13 @@ class AnimePendingUser extends Model
         'anime_id',
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->hasMany('App\Models\User');
+        return $this->belongsToMany(User::class, 'user_id', 'id');
     }
 
-    public function anime()
+    public function animes()
     {
-        return $this->hasMany('App\Models\Anime');
+        return $this->belongsToMany(Anime::class, 'anime_id', 'id');
     }
 }
