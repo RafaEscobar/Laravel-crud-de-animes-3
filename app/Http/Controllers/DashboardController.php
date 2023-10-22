@@ -18,7 +18,7 @@ class DashboardController extends Controller
             "30" => 30
         ];
 
-        $animes = Anime::select('animes.*')->join('anime_pending_users', 'animes.id', '!=', 'anime_pending_users.anime_id')->paginate($count);
+        $animes = Anime::select('animes.*')->whereNotIn('id', AnimePendingUser::select('anime_id')->get())->paginate($count);
         
         return view('dashboard', compact('animes', 'quantity', 'count'));
     }
