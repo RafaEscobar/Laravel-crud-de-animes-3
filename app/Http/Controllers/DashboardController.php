@@ -18,14 +18,14 @@ class DashboardController extends Controller
             "30" => 30
         ];
 
-        $animes = Anime::paginate($count);
+        $animes = Anime::select('animes.*')->join('anime_pending_users', 'animes.id', '!=', 'anime_pending_users.anime_id')->paginate($count);
         
         return view('dashboard', compact('animes', 'quantity', 'count'));
     }
 
     public function createPendingAnime ($animeId) 
     {
-        $data = AnimePendingUser::firstOrCreate([
+        AnimePendingUser::firstOrCreate([
             'user_id' => Auth()->user()->id,
             'anime_id' => $animeId,
         ]); 
