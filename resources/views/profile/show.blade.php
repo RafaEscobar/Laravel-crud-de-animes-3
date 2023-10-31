@@ -17,7 +17,13 @@
             </div>
         </div>
         <div class="w-8/12 p-8">
-            <x-card-anime-list title="Full Metal Alchemist Brotherhood" anime_portada_path="https://upload.wikimedia.org/wikipedia/fr/1/11/Fullmetal_Alchemist_logo.png" />
+            @foreach($pendingAnimes as $animePending)
+                    @dd($animePending->users->id); // Accede al id del usuario relacionado
+                    @dd($animePending->animes->id); // Accede al id del anime relacionado
+                @endforeach
+
+                
+                <x-card-anime-list title="Full Metal Alchemist Brotherhood" anime_portada_path="https://upload.wikimedia.org/wikipedia/fr/1/11/Fullmetal_Alchemist_logo.png" />
         </div>
     </div>
 </x-app-layout>

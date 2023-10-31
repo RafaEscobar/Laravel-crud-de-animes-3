@@ -18,7 +18,7 @@ class DashboardController extends Controller
             "30" => 30
         ];
 
-        $animes = Anime::paginate($count);
+        $animes = Anime::select('animes.*')->whereNotIn('id', AnimePendingUser::select('anime_id')->get())->paginate($count);
         
         return view('dashboard', compact('animes', 'quantity', 'count'));
     }
@@ -29,8 +29,9 @@ class DashboardController extends Controller
             'user_id' => Auth()->user()->id,
             'anime_id' => $animeId,
         ]); 
+        
         $response = "Anime agregado a tu lista de pendientes!!";
         
-        return redirect()->back()->with('response', $response)->with('color', 'orange');
+        return redirect()->back()->with('response', $response)->with('color', 'blue');
     }
 }
