@@ -27,6 +27,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('createPendingAnime/{dataId}', [DashboardController::class, 'createPendingAnime'])->name('addPending');
+    Route::get('deletePendingAnime/{id}', [DashboardController::class, 'deletePendingAnime'])->name('deletePending');
     Route::resource('user', UserController::class);
     Route::resource('anime', AnimesController::class);
 });

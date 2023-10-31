@@ -18,7 +18,7 @@
         </div>
         <div class="w-8/12 p-8 flex flex-wrap">
             @foreach (Auth()->user()->animes as $anime)
-                <x-card-anime-list :title="$anime->name" :anime_portada_path="$anime->anime_portada_path" />
+                <x-card-anime-list :id="$anime->id" :title="$anime->name" :anime_portada_path="$anime->anime_portada_path" />
             @endforeach
                 
         </div>
