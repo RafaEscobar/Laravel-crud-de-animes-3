@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('anime_pending_users', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
+        Schema::create('anime_user', function (Blueprint $table) {
             $table->foreignId('anime_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('anime_pending_users');
+        Schema::dropIfExists('anime_user');
     }
 };
