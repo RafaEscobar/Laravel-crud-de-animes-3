@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anime_User;
 use App\Models\AnimePendingUser;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,13 +38,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $pendingAnimes = AnimePendingUser::where('user_id', $user->id)->first();
-        dd($pendingAnimes->animes);
-        foreach ($pendingAnimes as $key ) {
-            dd($key->animes);
-        }
-        
-        return view('profile.show', compact('pendingAnimes'));
+        return view('profile.show');
     }
 
     /**

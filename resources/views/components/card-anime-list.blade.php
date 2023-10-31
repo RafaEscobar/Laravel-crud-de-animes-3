@@ -2,7 +2,7 @@
 
 <div class="m-8">
     <div class="w-48 bg-white p-4 rounded-3xl">
-        <img src="{{$anime_portada_path}}" alt="" srcset="" />
+        <img src="{{Storage::url($anime_portada_path)}}" alt="" srcset="" />
         <div class="flex mt-4 justify-center items-center">
             <div class="w-10/12 text-xs font-normal">
                 <p>{{$title}}</p>

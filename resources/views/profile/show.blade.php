@@ -16,14 +16,11 @@
                 </div>
             </div>
         </div>
-        <div class="w-8/12 p-8">
-            @foreach($pendingAnimes as $animePending)
-                    @dd($animePending->users->id); // Accede al id del usuario relacionado
-                    @dd($animePending->animes->id); // Accede al id del anime relacionado
-                @endforeach
-
+        <div class="w-8/12 p-8 flex flex-wrap">
+            @foreach (Auth()->user()->animes as $anime)
+                <x-card-anime-list :title="$anime->name" :anime_portada_path="$anime->anime_portada_path" />
+            @endforeach
                 
-                <x-card-anime-list title="Full Metal Alchemist Brotherhood" anime_portada_path="https://upload.wikimedia.org/wikipedia/fr/1/11/Fullmetal_Alchemist_logo.png" />
         </div>
     </div>
 </x-app-layout>
