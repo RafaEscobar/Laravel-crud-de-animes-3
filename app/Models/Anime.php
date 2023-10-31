@@ -17,4 +17,9 @@ class Anime extends Model
         'seasonCount',
     ];
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 }

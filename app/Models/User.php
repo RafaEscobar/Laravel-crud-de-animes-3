@@ -47,4 +47,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function animes()
+    {
+        return $this->belongsToMany(Anime::class);
+    }
 }
