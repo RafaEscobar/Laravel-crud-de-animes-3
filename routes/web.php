@@ -28,6 +28,7 @@ Route::middleware([
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('createPendingAnime/{dataId}', [DashboardController::class, 'createPendingAnime'])->name('addPending');
     Route::get('deletePendingAnime/{id}', [DashboardController::class, 'deletePendingAnime'])->name('deletePending');
+    Route::get('/showProfile', [UserController::class, 'showProfile'])->name('user.profile');
     Route::resource('user', UserController::class);
     Route::resource('anime', AnimesController::class);
 });

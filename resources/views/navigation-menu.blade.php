@@ -33,7 +33,7 @@
                                     </li>
                                 </a>
                             @endif
-                            <a href="{{route('user.show', Auth()->user()->id)}}">
+                            <a href="{{route('user.profile', Auth()->user()->id)}}">
                                 <li class="rounded-sm px-3 py-1 hover:bg-gray-100 cursor-pointer">
                                     Perfil de usuario
                                 </li>

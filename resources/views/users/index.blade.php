@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2>Gestión de usuarios</h2>
     </x-slot>
-    <div class="w-full">
+    <div class="w-full">    
         <div class="flex flex-col w-full p-8">
             <table class="text-left text-sm font-light w-full">
                 <thead class="bg-gray-800 text-white">
