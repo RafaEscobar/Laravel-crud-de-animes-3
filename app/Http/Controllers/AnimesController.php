@@ -12,6 +12,7 @@ class AnimesController extends Controller
      */
     public function index()
     {
+        dd("Animes");
         return view('animes.index');
     }
 
