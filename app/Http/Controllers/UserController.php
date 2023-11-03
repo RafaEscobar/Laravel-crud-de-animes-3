@@ -33,12 +33,13 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'password' => 'required',
             'profile_photo_path' => 'image|required'
         ]);
         
-        $image = $request->profile_photo_path->store('public/profilePhoto');
+        // $image = $request->profile_photo_path->store('public/profilePhoto');
 
-        
+
 
     }
 

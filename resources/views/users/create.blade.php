@@ -14,6 +14,10 @@
                 {{ Form::label('email', 'Ingresa el correo electrónico del usuario:', ['class' => 'text-lg']) }}
                 {{ Form::email('email', old('email'), ['class' => 'border-2 border-gray-300 rounded-lg pl-2 focus:outline-none focus:border-blue-400 w-full', 'id' => 'email']) }}
             </div>
+            <div class="mb-10">
+                {{ Form::label('email', 'Ingresa la contraseña del usuario:', ['class' => 'text-lg']) }}
+                {{ Form::password('password', ['class' => 'border-2 border-gray-300 rounded-lg pl-2 focus:outline-none focus:border-blue-400 w-full', 'id' => 'password']) }}
+            </div>
             <div class="flex">
                 <div class="w-1/2">
                     <label for="profile_photo_path" class="mx-auto cursor-pointer flex w-10/12 flex-col items-center rounded-xl border-2 border-dashed border-blue-500 bg-white p-6 text-center">
