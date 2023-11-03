@@ -38,7 +38,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('profile.show');
+        return view('users.show', compact('user'));
     }
 
     /**
