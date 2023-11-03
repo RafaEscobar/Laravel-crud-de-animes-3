@@ -37,9 +37,16 @@ class UserController extends Controller
             'profile_photo_path' => 'image|required'
         ]);
         
-        // $image = $request->profile_photo_path->store('public/profilePhoto');
+        $imageUrl = $request->profile_photo_path->store('public/profilePhoto');
 
+        $user = User::create(
+            array_merge(
+                $request->all(),
+                ['profile_photo_path' => $imageUrl]
+            )
+        );
 
+        return redirect()->route('user.index');
 
     }
 
