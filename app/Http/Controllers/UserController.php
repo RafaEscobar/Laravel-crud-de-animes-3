@@ -30,12 +30,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'profile_photo_path' => 'image'
+            'profile_photo_path' => 'image|required'
         ]);
+        
+        $image = $request->profile_photo_path->store('public/profilePhoto');
+
+        
+
     }
 
     /**

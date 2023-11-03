@@ -9,7 +9,6 @@ temporaryImage.addEventListener('change', () => {
     } 
     
     destinationImage.src = URL.createObjectURL(temporaryImage.files[0]);
-    document.querySelector('#divImage').style.display = "block";
 
 });
 
