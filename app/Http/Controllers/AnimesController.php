@@ -12,8 +12,8 @@ class AnimesController extends Controller
      */
     public function index()
     {
-        dd("Animes");
-        return view('animes.index');
+        $animes = Anime::all();
+        return view('animes.index', compact('animes'));
     }
 
     /**
