@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -12,7 +13,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        // dd("Usuarios");
         $users = User::all();
         return view("users.index", compact('users'));
     }
@@ -47,7 +47,6 @@ class UserController extends Controller
         );
 
         return redirect()->route('user.index');
-
     }
 
     /**
@@ -71,15 +70,24 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
      *  Update the specified resource in storage.
      */
     public function update(Request $request, User $user)
-    {
-        //
+    {        
+        ( $request->profile_photo_path ) ? Storage::delete($user->profile_photo_path) : null;
+        $imagePath = $request->profile_photo_path->store('public/profilePhoto');
+
+        $user->update(
+            array_merge(
+                $request->all(),
+                ['profile_photo_path' => $imagePath]
+            )
+        );
+        return redirect()->route('user.index');
     }
 
     /**
