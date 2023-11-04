@@ -42,6 +42,7 @@ class UserController extends Controller
         $user = User::create(
             array_merge(
                 $request->all(),
+                ['password' => bcrypt($request->password)],
                 ['profile_photo_path' => $imageUrl]
             )
         );
@@ -79,11 +80,13 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {        
         ( $request->profile_photo_path ) ? Storage::delete($user->profile_photo_path) : null;
-        $imagePath = $request->profile_photo_path->store('public/profilePhoto');
+        $imagePath = ( $request->profile_photo_path ) ? $request->profile_photo_path->store('public/profilePhoto') : $user->profile_photo_path;
+        $pass = ( $request->password ) ? bcrypt($request->password) : $user->password;
 
         $user->update(
             array_merge(
                 $request->all(),
+                ['password' => $pass],
                 ['profile_photo_path' => $imagePath]
             )
         );
