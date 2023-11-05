@@ -19,7 +19,7 @@ class AnimeFactory extends Factory
         return [
             'name' => fake()->sentence(3),
             'description' => fake()->paragraph(),
-            'anime_portada_path' => 'portadas/' . fake()->image('public/storage/portadas', 640, 480, null, false),
+            'anime_portada_path' => 'public/portadas/' . fake()->image('public/storage/portadas', 640, 480, null, false),
             'genere' => fake()->word(),
             'seasonCount' => fake()->numberBetween(1, 15),
         ];
