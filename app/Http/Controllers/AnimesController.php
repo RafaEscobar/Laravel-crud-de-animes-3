@@ -47,12 +47,7 @@ class AnimesController extends Controller
                 ['anime_portada_path' => $imagePath],
             )
         );
-
-        $content = [
-            'message' => 'Anime registrado!!',
-            'color' => 'gray',
-        ];
-        return redirect()->route('anime.index')->with('response', $content['message'])->with('color', $content['color']);
+        return redirect()->route('anime.index')->with('response', 'Anime registrado!!')->with('visibility', true)->with('type', 'success');
     }
 
     /**
@@ -85,12 +80,7 @@ class AnimesController extends Controller
                 ['anime_portada_path' => $imagePath]
             )
         );
-
-        $content = [
-            'message' => 'Anime actualizado!!',
-            'color' => 'gray',
-        ];
-        return redirect()->route('anime.index')->with('response', $content['message'])->with('color', $content['color']);
+        return redirect()->route('anime.index')->with('response', 'Anime actualizado!!')->with('visibility', true)->with('type', 'success');
     }
 
     /**
@@ -102,16 +92,9 @@ class AnimesController extends Controller
         if (count(collect($relation)) == 0) {
             Storage::delete($anime->anime_portada_path);
             $anime->delete();
-            $content = [
-                'message' => 'Anime eliminado!!',
-                'color' => 'red',
-            ];
+            return redirect()->route('anime.index')->with('response', 'Anime eliminado!!')->with('visibility', true)->with('type', 'danger');
         } else {
-            $content = [
-                'message' => 'No puedes eliminar un anime listado en pendientes.',
-                'color' => 'red',
-            ];
+            return redirect()->route('anime.index')->with('response', 'No puedes eliminar un anime listado en pendientes.')->with('visibility', true)->with('type', 'danger');
         }
-        return redirect()->route('anime.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 }
