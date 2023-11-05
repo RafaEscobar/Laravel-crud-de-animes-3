@@ -28,9 +28,10 @@ class DashboardController extends Controller
         Auth()->user()->animes()->attach($animeId);
         $content = [
             'message' => 'Anime agregado a tu lista de pendientes!!',
-            'color' => 'blue',
+            'color' => 'bg-blue-500',
+            'visibility' => true,
         ];
-        return redirect()->back()->with('response', $content['message'])->with('color', $content['color']);
+    return redirect()->back()->with('response', $content['message'])->with('color', $content['color'])->with('visibility', $content['visibility']);
     }
 
     public function deletePendingAnime($id)

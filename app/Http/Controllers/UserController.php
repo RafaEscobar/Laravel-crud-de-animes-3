@@ -110,7 +110,8 @@ class UserController extends Controller
         $content = [
             'message' => 'Usuario eliminado!!',
             'color' => 'red',
+            'visibility' => 'true',
         ];
-        return redirect()->route('user.index')->with('response', $content['message'])->with('color', $content['color']);
+        return redirect()->route('user.index')->with('response', $content['message'])->with('color', $content['color'])->with('visibility', $content['visibility']);
     }
 }

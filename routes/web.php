@@ -32,3 +32,7 @@ Route::middleware([
     Route::resource('user', UserController::class);
     Route::resource('anime', AnimesController::class);
 });
+
+Route::get('test', function(){
+    return view('nose');
+});
