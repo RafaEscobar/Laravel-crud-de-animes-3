@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         $user->email = 'rafa@gmail.com';
         $user->password = bcrypt('rafa1234');
         $user->description = 'Hola!! Soy Rafael un estudiante de la carrera de Ingeniería en Desarrollo de Software Multiplataforma. Y me quiero preperar màs.';
-        $user->profile_photo_path = 'profilePhoto/' . fake()->image('public/storage/profilePhoto', 640, 480, null, false);
+        $user->profile_photo_path = 'public/profilePhoto/' . fake()->image('public/storage/profilePhoto', 640, 480, null, false);
 
         $user->save();
     }

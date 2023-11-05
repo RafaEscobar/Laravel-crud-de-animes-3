@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anime;
+use App\Models\Anime_User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AnimesController extends Controller
 {
@@ -12,7 +14,8 @@ class AnimesController extends Controller
      */
     public function index()
     {
-        return view('animes.index');
+        $animes = Anime::paginate(8);
+        return view('animes.index', compact('animes'));
     }
 
     /**
@@ -20,7 +23,7 @@ class AnimesController extends Controller
      */
     public function create()
     {
-        //
+        return view('animes.create');
     }
 
     /**
@@ -28,7 +31,28 @@ class AnimesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'genere' => 'required',
+            'seasonCount' => 'required',
+            'anime_portada_path' => 'required'
+        ]);
+        
+        $imagePath = $request->anime_portada_path->store('public/portadas');
+
+        Anime::create(
+            array_merge(
+                $request->all(),
+                ['anime_portada_path' => $imagePath],
+            )
+        );
+
+        $content = [
+            'message' => 'Anime registrado!!',
+            'color' => 'gray',
+        ];
+        return redirect()->route('anime.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 
     /**
@@ -36,7 +60,7 @@ class AnimesController extends Controller
      */
     public function show(Anime $anime)
     {
-        //
+        return view('animes.show', compact('anime'));
     }
 
     /**
@@ -44,7 +68,7 @@ class AnimesController extends Controller
      */
     public function edit(Anime $anime)
     {
-        //
+        return view('animes.edit', compact('anime'));
     }
 
     /**
@@ -52,7 +76,21 @@ class AnimesController extends Controller
      */
     public function update(Request $request, Anime $anime)
     {
-        //
+        if ( !empty($request->anime_portada_path) ) Storage::delete($anime->anime_portada_path);
+        $imagePath = ( !empty($request->anime_portada_path) ) ? $request->anime_portada_path->store('public/portadas') : $anime->anime_portada_path;
+
+        $anime->update(
+            array_merge(
+                $request->all(),
+                ['anime_portada_path' => $imagePath]
+            )
+        );
+
+        $content = [
+            'message' => 'Anime actualizado!!',
+            'color' => 'gray',
+        ];
+        return redirect()->route('anime.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 
     /**
@@ -60,6 +98,20 @@ class AnimesController extends Controller
      */
     public function destroy(Anime $anime)
     {
-        //
+        $relation = Anime_User::where('anime_id', $anime->id)->where('user_id', Auth()->user()->id)->first();
+        if (count(collect($relation)) == 0) {
+            Storage::delete($anime->anime_portada_path);
+            $anime->delete();
+            $content = [
+                'message' => 'Anime eliminado!!',
+                'color' => 'red',
+            ];
+        } else {
+            $content = [
+                'message' => 'No puedes eliminar un anime listado en pendientes.',
+                'color' => 'red',
+            ];
+        }
+        return redirect()->route('anime.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 }

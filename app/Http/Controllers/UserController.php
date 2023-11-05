@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anime_User;
-use App\Models\AnimePendingUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -14,7 +13,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view("users.index");
+        $users = User::all();
+        return view("users.index", compact('users'));
     }
 
     /**
@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -30,13 +30,41 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'profile_photo_path' => 'image|required'
+        ]);
+        
+        $imageUrl = $request->profile_photo_path->store('public/profilePhoto');
+
+        User::create(
+            array_merge(
+                $request->all(),
+                ['password' => bcrypt($request->password)],
+                ['profile_photo_path' => $imageUrl]
+            )
+        );
+        $content = [
+            'message' => 'Usuario registrado!!',
+            'color' => 'gray',
+        ];
+        return redirect()->route('user.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 
     /**
      * Display the specified resource.
      */
     public function show(User $user)
+    {
+        return view('users.show', compact('user'));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function showProfile()
     {
         return view('profile.show');
     }
@@ -46,15 +74,30 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
      *  Update the specified resource in storage.
      */
     public function update(Request $request, User $user)
-    {
-        //
+    {        
+        ( $request->profile_photo_path ) ? Storage::delete($user->profile_photo_path) : null;
+        $imagePath = ( $request->profile_photo_path ) ? $request->profile_photo_path->store('public/profilePhoto') : $user->profile_photo_path;
+        $pass = ( $request->password ) ? bcrypt($request->password) : $user->password;
+
+        $user->update(
+            array_merge(
+                $request->all(),
+                ['password' => $pass],
+                ['profile_photo_path' => $imagePath]
+            )
+        );        
+        $content = [
+            'message' => 'Usuario actualizado!!',
+            'color' => 'gray',
+        ];
+        return redirect()->route('user.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 
     /**
@@ -62,6 +105,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        Storage::delete($user->profile_photo_path);
+        $user->delete();
+        $content = [
+            'message' => 'Usuario eliminado!!',
+            'color' => 'red',
+        ];
+        return redirect()->route('user.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 }
