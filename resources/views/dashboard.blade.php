@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-12" x-data="{sendCount: () => { document.querySelector('#selectForm').submit(); }, count: {{$count}} }">
-        <x-toast :show="session('visibility')" :color="session('color')">{{session('response')}}</x-toast> 
+        <x-toast :show="session('visibility')" :type="session('type')">{{session('response')}}</x-toast> 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="w-2/12 flex items-center mt-4 ml-4">

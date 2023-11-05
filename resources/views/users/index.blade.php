@@ -2,9 +2,7 @@
     <x-slot name="header">
         <h2>Gestión de usuarios</h2>
     </x-slot>
-    @if (session('response'))
-        <x-toast show="true" :color="session('color')">{{session('response')}}</x-toast> 
-    @endif
+    <x-toast :show="session('visibility')" :type="session('type')">{{session('response')}}</x-toast>
     <div class="w-full">    
         <div class="flex flex-col w-full p-8">
             <div class="flex justify-end mb-4">

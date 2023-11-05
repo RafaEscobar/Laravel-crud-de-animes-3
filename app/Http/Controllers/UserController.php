@@ -46,11 +46,7 @@ class UserController extends Controller
                 ['profile_photo_path' => $imageUrl]
             )
         );
-        $content = [
-            'message' => 'Usuario registrado!!',
-            'color' => 'gray',
-        ];
-        return redirect()->route('user.index')->with('response', $content['message'])->with('color', $content['color']);
+        return redirect()->route('user.index')->with('response', 'Usuario registrado!!')->with('type', 'success')->with('visibility', true);
     }
 
     /**
@@ -93,11 +89,7 @@ class UserController extends Controller
                 ['profile_photo_path' => $imagePath]
             )
         );        
-        $content = [
-            'message' => 'Usuario actualizado!!',
-            'color' => 'gray',
-        ];
-        return redirect()->route('user.index')->with('response', $content['message'])->with('color', $content['color']);
+        return redirect()->route('user.index')->with('response', 'Usuario actualizado!!')->with('type', 'success')->with('visibility', true);
     }
 
     /**
@@ -107,11 +99,6 @@ class UserController extends Controller
     {
         Storage::delete($user->profile_photo_path);
         $user->delete();
-        $content = [
-            'message' => 'Usuario eliminado!!',
-            'color' => 'red',
-            'visibility' => 'true',
-        ];
-        return redirect()->route('user.index')->with('response', $content['message'])->with('color', $content['color'])->with('visibility', $content['visibility']);
+        return redirect()->route('user.index')->with('response', 'Usuario eliminado!!')->with('type', 'danger')->with('visibility', true);
     }
 }
