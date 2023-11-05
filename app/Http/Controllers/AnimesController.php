@@ -89,6 +89,8 @@ class AnimesController extends Controller
      */
     public function destroy(Anime $anime)
     {
-        //
+        Storage::delete($anime->anime_portada_path);
+        $anime->delete();
+        return redirect()->back();
     }
 }
