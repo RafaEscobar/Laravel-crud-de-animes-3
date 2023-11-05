@@ -39,7 +39,7 @@ class UserController extends Controller
         
         $imageUrl = $request->profile_photo_path->store('public/profilePhoto');
 
-        $user = User::create(
+        User::create(
             array_merge(
                 $request->all(),
                 ['password' => bcrypt($request->password)],
@@ -90,6 +90,7 @@ class UserController extends Controller
                 ['profile_photo_path' => $imagePath]
             )
         );
+        
         return redirect()->route('user.index');
     }
 

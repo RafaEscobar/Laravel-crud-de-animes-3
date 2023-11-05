@@ -32,7 +32,6 @@ class DashboardController extends Controller
     public function deletePendingAnime($id)
     {
         Auth()->user()->animes()->detach($id);
-
         return redirect()->back();
     }
 }
