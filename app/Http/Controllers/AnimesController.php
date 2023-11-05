@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anime;
+use App\Models\Anime_User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -97,12 +98,20 @@ class AnimesController extends Controller
      */
     public function destroy(Anime $anime)
     {
-        Storage::delete($anime->anime_portada_path);
-        $anime->delete();
-        $content = [
-            'message' => 'Anime eliminado!!',
-            'color' => 'red',
-        ];
+        $relation = Anime_User::where('anime_id', $anime->id)->where('user_id', Auth()->user()->id)->first();
+        if (count(collect($relation)) == 0) {
+            Storage::delete($anime->anime_portada_path);
+            $anime->delete();
+            $content = [
+                'message' => 'Anime eliminado!!',
+                'color' => 'red',
+            ];
+        } else {
+            $content = [
+                'message' => 'No puedes eliminar un anime listado en pendientes.',
+                'color' => 'red',
+            ];
+        }
         return redirect()->route('anime.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 }
