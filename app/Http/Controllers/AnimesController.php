@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Anime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AnimesController extends Controller
 {
@@ -62,7 +63,7 @@ class AnimesController extends Controller
      */
     public function edit(Anime $anime)
     {
-        //
+        return view('animes.edit', compact('anime'));
     }
 
     /**
@@ -70,7 +71,17 @@ class AnimesController extends Controller
      */
     public function update(Request $request, Anime $anime)
     {
-        //
+        if ( !empty($request->anime_portada_path) ) Storage::delete($anime->anime_portada_path);
+        $imagePath = ( !empty($request->anime_portada_path) ) ? $request->anime_portada_path->store('public/portadas') : $anime->anime_portada_path;
+
+        $anime->update(
+            array_merge(
+                $request->all(),
+                ['anime_portada_path' => $imagePath]
+            )
+        );
+
+        return redirect()->route('anime.index');
     }
 
     /**

@@ -30,8 +30,8 @@
             {{ Form::file('anime_portada_path', ['class' => 'hidden', 'id' => 'photo_path']) }}
         </div>
         <div id="divImage" class="flex justify-center items-center w-1/2">
-            @if (!empty($user))
-                <img src="{{ Storage::url($user->anime_portada_path) }}" alt="" id="destinationImage" class="w-40 h-40 rounded-full">
+            @if (!empty($anime))
+                <img src="{{ Storage::url($anime->anime_portada_path) }}" alt="" id="destinationImage" class="w-40 h-40 rounded-full">
             @else
                 <img src="{{ asset('storage/assets/usuario.png') }}" alt="" id="destinationImage" class="w-40 h-40 rounded-full">
             @endif
