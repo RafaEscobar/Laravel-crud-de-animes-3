@@ -47,7 +47,11 @@ class AnimesController extends Controller
             )
         );
 
-        return redirect()->route('anime.index');
+        $content = [
+            'message' => 'Anime registrado!!',
+            'color' => 'gray',
+        ];
+        return redirect()->route('anime.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 
     /**
@@ -81,7 +85,11 @@ class AnimesController extends Controller
             )
         );
 
-        return redirect()->route('anime.index');
+        $content = [
+            'message' => 'Anime actualizado!!',
+            'color' => 'gray',
+        ];
+        return redirect()->route('anime.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 
     /**
@@ -91,6 +99,10 @@ class AnimesController extends Controller
     {
         Storage::delete($anime->anime_portada_path);
         $anime->delete();
-        return redirect()->back();
+        $content = [
+            'message' => 'Anime eliminado!!',
+            'color' => 'red',
+        ];
+        return redirect()->route('anime.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 }

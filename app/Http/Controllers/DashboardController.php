@@ -25,13 +25,21 @@ class DashboardController extends Controller
 
     public function createPendingAnime ($animeId) 
     { 
-        Auth()->user()->animes()->attach($animeId);   
-        return redirect()->back()->with('response', 'Anime agregado a tu lista de pendientes!!')->with('color', 'blue');
+        Auth()->user()->animes()->attach($animeId);
+        $content = [
+            'message' => 'Anime agregado a tu lista de pendientes!!',
+            'color' => 'blue',
+        ];
+        return redirect()->back()->with('response', $content['message'])->with('color', $content['color']);
     }
 
     public function deletePendingAnime($id)
     {
         Auth()->user()->animes()->detach($id);
-        return redirect()->back();
+        $content = [
+            'message' => 'Anime eliminado de tu lista de pendientes!!',
+            'color' => 'gray',
+        ];
+        return redirect()->back()->with('response', $content['message'])->with('color', $content['color']);
     }
 }

@@ -2,6 +2,9 @@
     <x-slot name="header">
         <h2>Gestión de animes</h2>
     </x-slot>
+    @if (session('response'))
+        <x-toast show="true" :color="session('color')">{{session('response')}}</x-toast> 
+    @endif
     <div class="w-full">
         <div class="flex flex-col w-full p-8">
             <div class="flex justify-end mb-4">
