@@ -4,6 +4,11 @@
     </x-slot>
     <div class="w-full">
         <div class="flex flex-col w-full p-8">
+            <div class="flex justify-end mb-4">
+                <x-button>
+                    <a href="{{route('anime.create')}}">Registrar anime</a>
+                </x-button>
+            </div>
             <table class="text-left text-sm font-light w-full">
                 <thead class="bg-gray-800 text-white">
                     <tr class="">

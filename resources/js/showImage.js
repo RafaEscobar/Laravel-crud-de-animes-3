@@ -1,4 +1,4 @@
-let temporaryImage = document.querySelector('#profile_photo_path');
+let temporaryImage = document.querySelector('#photo_path');
 let destinationImage = document.querySelector('#destinationImage');
 
 temporaryImage.addEventListener('change', () => {

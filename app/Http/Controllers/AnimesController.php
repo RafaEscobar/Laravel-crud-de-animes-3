@@ -21,7 +21,7 @@ class AnimesController extends Controller
      */
     public function create()
     {
-        //
+        return view('animes.create');
     }
 
     /**
@@ -29,7 +29,24 @@ class AnimesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'genere' => 'required',
+            'seasonCount' => 'required',
+            'anime_portada_path' => 'required'
+        ]);
+        
+        $imagePath = $request->anime_portada_path->store('public/portadas');
+
+        Anime::create(
+            array_merge(
+                $request->all(),
+                ['anime_portada_path' => $imagePath],
+            )
+        );
+
+        return redirect()->route('anime.index');
     }
 
     /**

@@ -14,7 +14,7 @@
     </div>
     <div class="flex">
         <div class="w-1/2">
-            <label for="profile_photo_path" class="mx-auto cursor-pointer flex w-10/12 flex-col items-center rounded-xl border-2 border-dashed border-blue-500 bg-white p-6 text-center">
+            <label for="photo_path" class="mx-auto cursor-pointer flex w-10/12 flex-col items-center rounded-xl border-2 border-dashed border-blue-500 bg-white p-6 text-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6 text-blue-600">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -22,7 +22,7 @@
             </svg>
             <snap class="mt-4 text-lg font-medium text-blue-600">Cargar imagen</snap>
             <snap class="mt-2 text-blue-600 text-sm">Formatos soportados: SVG, PNG, JPG or GIF. </snap>
-            {{ Form::file('profile_photo_path', ['class' => 'hidden', 'id' => 'profile_photo_path']) }}
+            {{ Form::file('profile_photo_path', ['class' => 'hidden', 'id' => 'photo_path']) }}
         </div>
         <div id="divImage" class="flex justify-center items-center w-1/2">
             @if (!empty($user))
