@@ -12,7 +12,7 @@ class AnimesController extends Controller
      */
     public function index()
     {
-        $animes = Anime::all();
+        $animes = Anime::paginate(8);
         return view('animes.index', compact('animes'));
     }
 
@@ -37,7 +37,7 @@ class AnimesController extends Controller
      */
     public function show(Anime $anime)
     {
-        //
+        return view('animes.show', compact('anime'));
     }
 
     /**
