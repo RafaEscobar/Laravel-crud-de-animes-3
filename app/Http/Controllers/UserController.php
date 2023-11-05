@@ -98,6 +98,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        Storage::delete($user->profile_photo_path);
         $user->delete();
         return redirect()->route('user.index');
     }
