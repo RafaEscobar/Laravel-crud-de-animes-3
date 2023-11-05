@@ -39,15 +39,18 @@ class UserController extends Controller
         
         $imageUrl = $request->profile_photo_path->store('public/profilePhoto');
 
-        $user = User::create(
+        User::create(
             array_merge(
                 $request->all(),
                 ['password' => bcrypt($request->password)],
                 ['profile_photo_path' => $imageUrl]
             )
         );
-
-        return redirect()->route('user.index');
+        $content = [
+            'message' => 'Usuario registrado!!',
+            'color' => 'gray',
+        ];
+        return redirect()->route('user.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 
     /**
@@ -89,8 +92,12 @@ class UserController extends Controller
                 ['password' => $pass],
                 ['profile_photo_path' => $imagePath]
             )
-        );
-        return redirect()->route('user.index');
+        );        
+        $content = [
+            'message' => 'Usuario actualizado!!',
+            'color' => 'gray',
+        ];
+        return redirect()->route('user.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 
     /**
@@ -100,6 +107,10 @@ class UserController extends Controller
     {
         Storage::delete($user->profile_photo_path);
         $user->delete();
-        return redirect()->route('user.index');
+        $content = [
+            'message' => 'Usuario eliminado!!',
+            'color' => 'red',
+        ];
+        return redirect()->route('user.index')->with('response', $content['message'])->with('color', $content['color']);
     }
 }

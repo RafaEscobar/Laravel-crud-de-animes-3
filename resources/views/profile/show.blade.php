@@ -4,6 +4,9 @@
             Perfil de usuario
         </h2>
     </x-slot>
+    @if (session('response'))
+        <x-toast show="true" :color="session('color')">{{session('response')}}</x-toast> 
+    @endif
     <div class="flex">
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 w-4/12 ">
             <div class="mt-2 flex flex-col justify-center items-center bg-white p-4 rounded-xl">
